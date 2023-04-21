@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
+//Cloudinary Configurations 
+import UploadWidget from "../Components/UploadWidget";
 
-function SignUp({ setUser, setIsVisible }) {
+function SignUp({ setUser }) {
     const [newUser, setNewUser] = useState({})
     const navigate = useNavigate()
+    const [cloudinaryImageTag, setCloudinaryImageTag] = useState("")
 
-    function handleClick(e) {
-        setIsVisible(false);
+    function handleLoginClick(e) {
+        navigate("/");
     }
 
-    const onImageChange = (event) => {
-        setNewUser({ ...newUser, featured_image: event.target.files[0] })
-    }
+    useEffect(() => {
+        setNewUser({ ...newUser, cloudinary_tag: cloudinaryImageTag })
+    }, [cloudinaryImageTag])
 
+    console.log(cloudinaryImageTag)
+
+    console.log(newUser)
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData()
@@ -27,7 +33,6 @@ function SignUp({ setUser, setIsVisible }) {
                 r.json().then((user) => setUser(user));
             }
         });
-        setIsVisible(true);
         navigate("/home")
     }
 
@@ -90,11 +95,12 @@ function SignUp({ setUser, setIsVisible }) {
                     <label> State: </label>
                     <SignUpInput type="text" placeholder="State" name="state" onChange={handleChange} />
                 </div>
-                <FileInput type="file" accept="image/*" multiple={false} onChange={onImageChange} />
+
+                <UploadWidget setCloudinaryImageTag={setCloudinaryImageTag} />
                 <FormButton type="submit">Submit</FormButton>
             </SignUpForm>
 
-            <SignUpButton onClick={handleClick}>Have an account already? Login!</SignUpButton>
+            <SignUpButton onClick={handleLoginClick}>Have an account already? Login!</SignUpButton>
         </SignUpDiv>
     );
 }

@@ -30,7 +30,7 @@ class PetsController < ApplicationController
     private
 
     def pet_params
-        params.permit(:name, :animal_type, :breed, :birthday, :user_id, :pet_image )
+        params.permit(:name, :animal_type, :breed, :birthday, :user_id, :cloudinary_tag )
     end
 
 end

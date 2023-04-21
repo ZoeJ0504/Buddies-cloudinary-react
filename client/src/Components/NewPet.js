@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
+import UploadWidget from "./UploadWidget";
 
 function NewPet({ loggedInUser, handlePetPost, setFormVisible }) {
 
     const [userId, setUserId] = useState(0)
     const [newPet, setNewPet] = useState({})
+    const [cloudinaryImageTag, setCloudinaryImageTag] = useState("")
 
 
     useEffect(() => setUserId(loggedInUser?.id), [loggedInUser])
-
-    const onImageChange = (event) => {
-        setNewPet({ ...newPet, pet_image: event.target.files[0] })
-    }
+    useEffect(() => {setNewPet({...newPet, cloudinary_tag: cloudinaryImageTag})}, [cloudinaryImageTag])
 
     const handleChange = (event) => {
         setNewPet({ ...newPet, [event.target.name]: event.target.value })
@@ -25,7 +24,7 @@ function NewPet({ loggedInUser, handlePetPost, setFormVisible }) {
 
         handlePetPost(formData)
     }
-
+console.log(cloudinaryImageTag)
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -33,7 +32,7 @@ function NewPet({ loggedInUser, handlePetPost, setFormVisible }) {
                 <input onChange={handleChange} type="text" placeholder="animal_type" name="animal_type" />
                 <input onChange={handleChange} type="text" placeholder="breed" name="breed" />
                 <input onChange={handleChange} type="date" name="birthday" />
-                <input type="file" accept="image/*" multiple={false} onChange={onImageChange} />
+                <UploadWidget setCloudinaryImageTag={setCloudinaryImageTag}/>
                 <button type="submit">Submit</button>
             </form>
         </div>

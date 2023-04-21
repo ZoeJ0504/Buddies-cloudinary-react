@@ -2,32 +2,34 @@ import React, { useState } from "react"
 import styled from "styled-components";
 import moment from 'moment'
 import UpdatePet from "./UpdatePet";
+import UploadWidget from "./UploadWidget";
 
 function PetCard({ pet, handlePatchPets, handleDeleteClick }) {
     const [isVisible, setIsVisible] = useState(false)
     const [style, setStyle] = useState({ display: 'none' });
-    const [petImage, setPetImage] = useState()
+    
+    // const [petImage, setPetImage] = useState()
+    
 
 
-
-    const onImageChange = (event) => {
-        setPetImage({ pet_image: event.target.files[0] })
-    }
+// Old way of posting images
+    // const onImageChange = (event) => {
+    //     setPetImage({ pet_image: event.target.files[0] })
+    // }
 
     return (
         <PetCardDiv>
             <PetCardP>{pet.name}</PetCardP>
-            <div
+            {/* <div
                 onMouseEnter={e => {
                     setStyle({ display: 'block' });
                 }}
                 onMouseLeave={e => {
                     setStyle({ display: 'none' })
                 }}
-            >
-                <PetImage src={pet.pet_image.url} alt={pet.name} />
-                <input type="file" accept="image/*" multiple={false} onChange={onImageChange} style={style} />
-            </div>
+            > */}
+                <PetImage src={`https://res.cloudinary.com/dlewu2m7d/image/upload/v1681428108/${pet.cloudinary_tag}.jpg`} alt={pet.name} />
+            {/* </div> */}
 
             <PetCardP>{moment.utc(pet.birthday).format('MM-DD-YYYY')}</PetCardP>
             <PetCardP>{pet.animal_type}</PetCardP>

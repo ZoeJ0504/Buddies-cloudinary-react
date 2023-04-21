@@ -3,7 +3,7 @@ import NewEvent from "../Components/NewEvent";
 import styled from "styled-components";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Event from "../Components/Event"
+import Event from "../Components/Event";
 
 function Profile({ user }) {
     const [isVisible, setIsVisible] = useState(false)
@@ -40,7 +40,7 @@ function Profile({ user }) {
 
         setIsVisible(!isVisible)
     }
-
+console.log(user)
     return (
         <PageDiv>
             <Tabs>
@@ -55,7 +55,7 @@ function Profile({ user }) {
                             <InfoDiv>{user?.city}, {user?.state}</InfoDiv>
                         </div>
                         <div>
-                            <ProfileImg src={user?.featured_image.url} alt="profileimage" />
+                             <ProfileImg src={`https://res.cloudinary.com/dlewu2m7d/image/upload/v1681428108/${user.cloudinary_tag}.jpg`} alt="profile"/>
                         </div>
                     </ProfileDiv>
                 </TabPanel>

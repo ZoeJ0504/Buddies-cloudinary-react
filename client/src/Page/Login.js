@@ -3,9 +3,11 @@ import LoginForm from "../Components/LoginForm";
 import SignUp from "./SignUp";
 import styled from "styled-components";
 import Buddies from "../image/Buddies.jpg"
+import { useNavigate } from "react-router-dom"
 
 function Login({ setUser }) {
     const [isVisible, setIsVisible] = useState(false);
+    
 
     return (
         <div>

@@ -8,7 +8,7 @@ function LoginForm({ setUser, setIsVisible, isVisible }) {
     const navigate = useNavigate()
 
     function handleClick(e) {
-        setIsVisible(true)
+        navigate("/signup")
     }
 
     function handleSubmit(e) {

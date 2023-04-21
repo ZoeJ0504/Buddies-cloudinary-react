@@ -22,6 +22,6 @@ class UsersController < ApplicationController
 
     private
     def user_params
-        params.permit(:username, :password, :password_confirmation, :email, :first_name, :last_name, :city, :state, :attribution, :featured_image)
+        params.permit(:username, :password, :password_confirmation, :email, :first_name, :last_name, :city, :state, :attribution, :cloudinary_tag)
     end
 end
