@@ -7,12 +7,12 @@ import UploadWidget from "./UploadWidget";
 function PetCard({ pet, handlePatchPets, handleDeleteClick }) {
     const [isVisible, setIsVisible] = useState(false)
     const [style, setStyle] = useState({ display: 'none' });
-    
+
     // const [petImage, setPetImage] = useState()
-    
 
 
-// Old way of posting images
+
+    // Old way of posting images
     // const onImageChange = (event) => {
     //     setPetImage({ pet_image: event.target.files[0] })
     // }
@@ -28,7 +28,7 @@ function PetCard({ pet, handlePatchPets, handleDeleteClick }) {
                     setStyle({ display: 'none' })
                 }}
             > */}
-                <PetImage src={`https://res.cloudinary.com/dlewu2m7d/image/upload/v1681428108/${pet.cloudinary_tag}.jpg`} alt={pet.name} />
+            <PetImage src={`https://res.cloudinary.com/dlewu2m7d/image/upload/v1681428108/${pet.cloudinary_tag}.jpg`} alt={pet.name} />
             {/* </div> */}
 
             <PetCardP>{moment.utc(pet.birthday).format('MM-DD-YYYY')}</PetCardP>
